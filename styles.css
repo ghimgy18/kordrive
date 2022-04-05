@@ -1,0 +1,18 @@
+#intro {
+    background-image: url('images/bgimage.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#padding {
+    padding-top: 15%;
+}
+
+#space {
+    width: 95px;
+}
+
+#adminimg {
+    height: 68%;
+}
