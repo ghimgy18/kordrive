@@ -7,41 +7,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/mdb.min.css">
     <link rel="stylesheet" href="../../styles.css">
-    <title>instructor Homepage</title>
+    <title>Instructor Homepage</title>
 </head>
 
 <body>
-    <div style="padding-top: 2%; padding-left: 2%;">
-        <div class="row" style="width: 100%">
-            <div class="col-md-2 bg-primary rounded" style="height: 650px;">
-                <div class="border border-dark rounded bg-primary pb-3 d-flex justify-content-center ">
-
+    <table class="table">
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">
                     <h1>Instructor</h1>
-                </div>
-                <div style="height: 50px;"></div>
-                <div class="border border-dark rounded bg-primary pb-3 d-flex justify-content-center text-light">
-                    Edit profile
-                </div>
-                <div style="height: 50px;"></div>
-                <div class="border border-dark rounded bg-primary pb-3 d-flex justify-content-center text-light">
-                    Check Booking
-                </div>
 
 
 
-            </div>
-            <div style="width: 60%;"></div>
-            <div class="col d-flex justify-content-around">
-                <a href="">Homepage</a>
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th scope="col">
+                    <a href="/pages/instructor_module/home.html">Homepage</a>
 
-                <a href="/index.html">Log Out</a>
-            </div>
-        </div>
+                </th>
+                <th scope="col">
+                    <a href="/index.html">Logout</a>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th style="width: 200px;">
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="gohomepage()" style="height: 100px; width: 200px; ">
+                            Homepage
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="goeditprofile()" style="height: 100px; width: 200px;">
+                            Edit Profile
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="gocheckbooking()" style="height: 100px; width: 200px;">
+                            Check Booking
+                        </button>
+                    </div>
+
+                </th>
+
+                <td>
+                    <div style="padding-top: 20%; padding-left: 400px;">
+                        <h1 style="text-align: center;">Homepage</h1>
+
+                    </div>
+                </td>
+
+            </tr>
 
 
-    </div>
+
+
+
+        </tbody>
+    </table>
+
+
 
     <script src="../../js/mdb.min.js"></script>
+    <script src="/pages/instructor_module/app.js"></script>
 </body>
 
 </html>

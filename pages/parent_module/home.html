@@ -11,44 +11,80 @@
 </head>
 
 <body>
-    <div style="padding-top: 2%; padding-left: 2%;">
-        <div class="row" style="width: 100%">
-            <div class="col-md-2 bg-primary rounded" style="height: 650px;">
-                <div class="border border-dark rounded bg-primary pb-3 d-flex justify-content-center ">
-
+    <table class="table">
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">
                     <h1>Parent</h1>
-                </div>
-                <div style="height: 50px;"></div>
-                <div class="border border-dark rounded bg-primary pb-3 d-flex justify-content-center text-light">
-                    Edit profile
-                </div>
-                <div style="height: 50px;"></div>
-                <div class="border border-dark rounded bg-primary pb-3 d-flex justify-content-center text-light">
-                    Book class
-                </div>
-                <div style="height: 50px;"></div>
-                <div class="border border-dark rounded bg-primary pb-3 d-flex justify-content-center text-light">
-                    Booking status
-                </div>
-                <div style="height: 50px;"></div>
-                <div class="border border-dark rounded bg-primary pb-3 d-flex justify-content-center text-light">
-                    Payment
-                </div>
 
 
-            </div>
-            <div style="width: 60%;"></div>
-            <div class="col d-flex justify-content-around">
-                <a href="">Homepage</a>
 
-                <a href="/index.html">Log Out</a>
-            </div>
-        </div>
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th scope="col">
+                    <a href="">Homepage</a>
+
+                </th>
+                <th scope="col">
+                    <a href="/index.html">Logout</a>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th style="width: 200px;">
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="gohomepage()" style="height: 100px; width: 200px; ">
+                            Homepage
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="goeditprofile()" style="height: 100px; width: 200px;">
+                            Edit Profile
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="gobookclass()" style="height: 100px; width: 200px;">
+                            Book class
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="gobookstatus()" style="height: 100px; width: 200px;">
+                            Booking Status
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="gopayment()" style="height: 100px; width: 200px; ">
+                            Payment
+                        </button>
+                    </div>
+                </th>
+
+                <td>
+                    <div style="padding-top: 20%; padding-left: 400px;">
+                        <h1 style="text-align: center;">Homepage</h1>
+
+                    </div>
+                </td>
+
+            </tr>
 
 
-    </div>
+
+
+
+        </tbody>
+    </table>
+
+
 
     <script src="../../js/mdb.min.js"></script>
+    <script src="/pages/parent_module/app.js"></script>
 </body>
 
 </html>

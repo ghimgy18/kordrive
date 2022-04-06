@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/mdb.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <title>Admin Homepage</title>
+</head>
+
+<body>
+    <table class="table">
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">
+                    <h1>Admin</h1>
+
+
+
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th scope="col">
+                    <a href="/pages/admin_module/home.html">Homepage</a>
+
+                </th>
+                <th scope="col">
+                    <a href="/index.html">Logout</a>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th style="width: 200px;">
+
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="goviewinstructor()" style="height: 100px; width: 200px;">
+                            View Instructor
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="goverifybooking()" style="height: 100px; width: 200px;">
+                            Verify Booking
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="goviewparent()" style="height: 100px; width: 200px; ">
+                            View Parent
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="gomanagepayment()" style="height: 100px; width: 200px; ">
+                            Manage payment
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="goinstructorscheduler()" style="height: 100px; width: 200px; ">
+                            Instructor schedule
+                        </button>
+                    </div>
+                </th>
+
+                <td>
+                    <div style="padding-top: 5%; padding-left: 200px;">
+                        <h1 style="text-align: center;">View Instructor</h1>
+
+                    </div>
+                    <div style="padding-left: 100px;">
+                        <table style="width: 700px;" class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col"></th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td>Sasi</td>
+                                    <td>Delete</td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Ahmad</td>
+                                    <td>Delete</td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Kanna</td>
+                                    <td>Delete</td>
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Zarun</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Phone no</th>
+                                    <td>016783929</td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email</th>
+                                    <td>xxx</td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">Address</th>
+                                    <td>xxx</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-block ">Add</button>
+                        </div>
+                    </div>
+
+
+                </td>
+
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+
+
+
+    <script src="../../js/mdb.min.js"></script>
+    <script src="/pages/admin_module/app.js"></script>
+</body>
+
+</html>
