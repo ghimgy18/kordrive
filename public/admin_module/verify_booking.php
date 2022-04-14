@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
 
     $status = $_POST['status'];
     $comment = $_POST['comment'];
-    $username = $_POST['username'];
+    $username = $_POST['usernam'];
 
 
     $sql = "SELECT * FROM booking WHERE childname='$childname'";
