@@ -125,7 +125,7 @@
 
 
     <script src="../../js/mdb.min.js"></script>
-    <script src="/pages/admin_module/app.js"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>

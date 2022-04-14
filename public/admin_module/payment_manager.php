@@ -68,7 +68,7 @@
 
                 <td>
                     <div style="padding-top: 5%; padding-left: 200px;">
-                        <h1 style="text-align: center;">Instructor Schedule</h1>
+                        <h1 style="text-align: center;">Manage Payment</h1>
 
                     </div>
                     <div style="padding-left: 100px;">
@@ -76,27 +76,23 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Phone number</th>
-                                    <th scope="col">Class time</th>
+                                    <th scope="col">Ali</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
 
-                                    <td>xxx</td>
-                                    <td>xxxx</td>
-                                    <td>xxx-xxxxxxxx</td>
-                                    <td>xx.xx</td>
+                                    <td>Amount</td>
+                                    <td>RM50</td>
 
 
 
                                 </tr>
                                 <tr>
-                                    <td>xxx</td>
-                                    <td>xxxx</td>
-                                    <td>xxx-xxxxxxxx</td>
-                                    <td>xx.xx</td>
+                                    <td>Date</td>
+                                    <td>12-Jun-22</td>
+
 
 
                                 </tr>
@@ -123,7 +119,7 @@
 
 
     <script src="../../js/mdb.min.js"></script>
-    <script src="/pages/admin_module/app.js"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>

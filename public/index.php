@@ -1,3 +1,7 @@
+<?php
+include 'config.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+
     <title>Driving School Online Booking System</title>
 </head>
 
@@ -20,7 +24,7 @@
             <div class="card-body text-center">
                 <h5 class="card-title">Parent</h5>
 
-                <a href="/pages/parent_module/login.html" class="btn btn-primary">Log In</a>
+                <a href="parent_module/login.php" class="btn btn-primary">Log In</a>
             </div>
         </div>
         <div id="space"></div>
@@ -29,7 +33,7 @@
             <div class="card-body text-center">
                 <h5 class="card-title">instructor</h5>
 
-                <a href="/pages/instructor_module/login.html" class="btn btn-primary">Log In</a>
+                <a href="instructor_module/login.php" class="btn btn-primary">Log In</a>
             </div>
         </div>
         <div id="space"></div>
@@ -38,7 +42,7 @@
             <div class="card-body text-center">
                 <h5 class="card-title">Admin</h5>
 
-                <a href="/pages/admin_module/login.html" class="btn btn-primary">Log In</a>
+                <a href="./admin_module/login.php" class="btn btn-primary">Log In</a>
             </div>
         </div>
     </div>
@@ -51,9 +55,10 @@
 
 
 
+    <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
 
 
-
+    <script src="../public/index.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,45 @@
+#intro {
+    background-image: url('images/bgimage.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#login {
+    background-image: url('images/parent.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#padding {
+    padding-top: 15%;
+}
+
+#space {
+    width: 95px;
+}
+
+#adminimg {
+    height: 68%;
+}
+
+.styled input[type="time"],
+.styled .unsupported {
+    background: #EAEFF1;
+    border: none;
+    border-bottom: 4px solid #C9D6DA;
+    display: block;
+    margin-bottom: .625em;
+    margin-top: .3em;
+    outline-offset: 3px;
+    padding: .45em .45em .45em .65em;
+    width: 100%;
+}
+
+input[type="time"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    font-style: italic;
+    font-size: 0.9em;
+}

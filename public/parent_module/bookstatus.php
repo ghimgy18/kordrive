@@ -1,3 +1,21 @@
+<?php
+include '../config.php';
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+}
+error_reporting(0);
+$resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[email]' ");
+
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,28 +29,32 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item active">
+                    <div class="mx-auto order-0 ">
+                        <a class="navbar-brand mx-auto" href="#">Parent</a>
+
+                </li>
+            </ul>
+        </div>
+
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a href="/pages/parent_module/home.html" class="nav-link">Homepage</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../logout.php
+                    " class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <table class="table">
-        <thead class="black white-text">
-            <tr>
-                <th scope="col">
-                    <h1>Parent</h1>
-
-
-
-                </th>
-                <th></th>
-
-
-                <th scope="col">
-                    <a href="/pages/parent_module/home.html">Homepage</a>
-
-                </th>
-                <th scope="col">
-                    <a href="/index.html">Logout</a>
-
-                </th>
-            </tr>
-        </thead>
         <tbody>
 
             <tr>
@@ -77,20 +99,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <?php
+                                if (mysqli_num_rows($resul) > 0) {
+                                ?>
+                                    <?php
+                                    $i = 0;
+                                    while ($row = mysqli_fetch_array($resul)) {
+                                    ?>
+                                        <tr>
 
-                                    <td>Ali</td>
-                                    <td>2</td>
-                                    <td>2022-2-12</td>
-                                    <td>Accepted</td>
-                                </tr>
-                                <tr>
-                                    <td>Abu</td>
-                                    <td>2</td>
-                                    <td>2022-2-14</td>
-                                    <td>Declined</td>
-                                </tr>
+                                            <td><?php echo $row['childname'] ?></td>
+                                            <td><?php echo $row['time'] ?></td>
+                                            <td><?php echo $row['date'] ?></td>
+                                            <td><?php echo $row['status'] ?></td>
+                                        </tr>
 
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
+                                <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -108,7 +140,7 @@
 
 
     <script src="../../js/mdb.min.js"></script>
-    <script src="/pages/parent_module/app.js"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,23 @@
+<?php
+include '../config.php';
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+}
+// $email = 'ghuf.yoo@gmail.com';
+// $sql = "SELECT * FROM parent;";
+// $q = mysqli_query($conn, $sql);
+// $resultCheck = mysqli_num_rows($q);
+// if ($resultCheck > 0) {
+//     while ($row = mysqli_fetch_assoc($q)) {
+//         echo $row['firstname'];
+//         echo $row['email'];
+//     }
+// }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +88,7 @@
 
                 <td>
                     <div style="padding-top: 20%; padding-left: 400px;">
+                        <?php echo "<h1 >Welcome " . $_SESSION['username'] . "</h1>"; ?>
                         <h1 style="text-align: center;">Homepage</h1>
 
                     </div>
@@ -85,7 +106,7 @@
 
 
     <script src="../../js/mdb.min.js"></script>
-    <script src="/pages/admin_module/app.js"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>

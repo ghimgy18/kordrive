@@ -1,3 +1,27 @@
+<?php
+include '../config.php';
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+}
+error_reporting(0);
+// $getusername = mysqli_query($conn, "SELECT * FROM instructor WHERE email = '" . ($_SESSION['email']) . "'");
+// $ro = mysqli_fetch_array($getusername);
+// $username = $ro['username'];
+
+
+
+$resul = mysqli_query($conn, "SELECT * FROM booking WHERE instructoremail = '$_SESSION[email]'");
+
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +52,7 @@
 
                 </th>
                 <th scope="col">
-                    <a href="/index.html">Logout</a>
+                    <a href="../logout.php">Logout</a>
 
                 </th>
             </tr>
@@ -67,25 +91,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <?php
+                                if (mysqli_num_rows($resul) > 0) {
+                                ?>
+                                    <?php
+                                    $i = 0;
+                                    while ($row = mysqli_fetch_array($resul)) {
+                                    ?>
+                                        <tr>
 
-                                    <td>Ali</td>
-                                    <td>12-Jun-22</td>
-                                    <td>2pm</td>
+                                            <td><?php echo $row['childname'] ?></td>
+                                            <td>12-Jun-22</td>
+                                            <td>2pm</td>
 
-                                </tr>
-                                <tr>
-                                    <td>Ahmad</td>
-                                    <td>13-May-22</td>
-                                    <td>4pm</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Julie</td>
-                                    <td>14-Sep-22</td>
-                                    <td>8am</td>
-
-                                </tr>
+                                        </tr>
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
+                                <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                                ?>
 
                             </tbody>
                         </table>
@@ -104,7 +132,7 @@
 
 
     <script src="../../js/mdb.min.js"></script>
-    <script src="/pages/instructor_module/app.js"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>

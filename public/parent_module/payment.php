@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/mdb.min.css">
     <link rel="stylesheet" href="../../styles.css">
-    <title>Instructor Homepage</title>
+    <title>Parent Homepage</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         <thead class="black white-text">
             <tr>
                 <th scope="col">
-                    <h1>Instructor</h1>
+                    <h1>Parent</h1>
 
 
 
@@ -25,11 +25,11 @@
                 <th></th>
                 <th></th>
                 <th scope="col">
-                    <a href="/pages/instructor_module/home.html">Homepage</a>
+                    <a href="home.php">Homepage</a>
 
                 </th>
                 <th scope="col">
-                    <a href="/index.html">Logout</a>
+                    <a href="../logout.php">Logout</a>
 
                 </th>
             </tr>
@@ -49,14 +49,24 @@
                         </button>
                     </div>
                     <div style="padding-bottom: 25px;">
-                        <button onclick="gocheckbooking()" style="height: 100px; width: 200px;">
-                            Check Booking
+                        <button onclick="gobookclass()" style="height: 100px; width: 200px;">
+                            Book class
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="gobookstatus()" style="height: 100px; width: 200px;">
+                            Booking Status
+                        </button>
+                    </div>
+                    <div style="padding-bottom: 25px;">
+                        <button onclick="gopayment()" style="height: 100px; width: 200px; ">
+                            Payment
                         </button>
                     </div>
                 </th>
 
                 <td>
-                    <h1 style="padding-left: 305px; text-align: center;">Edit Profile</h1>
+                    <h1 style="padding-left: 305px; text-align: center;">Payment</h1>
                     <form style="padding-left: 305px;">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
 
@@ -64,49 +74,34 @@
                         <!-- Text input -->
                         <div class="form-outline mb-4">
                             <input type="text" id="form6Example3" class="form-control" />
-                            <label class="form-label" for="form6Example3">Username</label>
+                            <label class="form-label" for="form6Example3">Name:</label>
                         </div>
 
-                        <!-- Text input -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form6Example4" class="form-control" />
-                            <label class="form-label" for="form6Example4">Password</label>
-                        </div>
 
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="form6Example5" class="form-control" />
-                            <label class="form-label" for="form6Example5">Email</label>
-                        </div>
 
                         <!-- Number input -->
                         <div class="form-outline mb-4">
                             <input type="number" id="form6Example6" class="form-control" />
-                            <label class="form-label" for="form6Example6">Phone number</label>
+                            <label class="form-label" for="form6Example6">Amount:</label>
                         </div>
 
                         <!-- Message input -->
                         <div class="form-outline mb-4">
                             <textarea class="form-control" id="form6Example7" rows="2"></textarea>
-                            <label class="form-label" for="form6Example7">Adress</label>
+                            <label class="form-label" for="form6Example7">Payment Method</label>
                         </div>
 
-                        <!-- Checkbox -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form6Example4" class="form-control" />
-                            <label class="form-label" for="form6Example4">Children name</label>
+
+
+
+
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-block ">Pay</button>
                         </div>
-                        <div class="row ">
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary btn-block ">Reset</button>
-                            </div>
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary btn-block ">Update</button>
-                            </div>
 
 
 
-                        </div>
+
                         <!-- Submit button -->
 
                     </form>
@@ -124,7 +119,7 @@
 
 
     <script src="../../js/mdb.min.js"></script>
-    <script src="/pages/instructor_module/app.js"></script>
+    <script src="../parent_module/app.js"></script>
 </body>
 
 </html>

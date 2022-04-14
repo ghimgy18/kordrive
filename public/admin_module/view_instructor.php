@@ -1,3 +1,22 @@
+<?php
+include '../config.php';
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+}
+error_reporting(0);
+$resul = mysqli_query($conn, "SELECT * FROM instructor;");
+
+
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,60 +95,40 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
-                                    <th scope="col"></th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-
-                                    <td>Sasi</td>
-                                    <td>Delete</td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>Ahmad</td>
-                                    <td>Delete</td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>Kanna</td>
-                                    <td>Delete</td>
-
-
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Zarun</th>
+                                    <th scope="col">Phone No</th>
+                                    <th scope="col">Email</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">Phone no</th>
-                                    <td>016783929</td>
+                                <?php
+                                if (mysqli_num_rows($resul) > 0) {
+                                ?>
+                                    <?php
+                                    $i = 0;
+                                    while ($row = mysqli_fetch_array($resul)) {
+                                    ?>
+                                        <tr>
 
-                                </tr>
-                                <tr>
-                                    <th scope="row">Email</th>
-                                    <td>xxx</td>
+                                            <td><?php echo $row['username'] ?></td>
+                                            <td><?php echo $row['phonenumber'] ?></td>
+                                            <td><?php echo $row['email'] ?></td>
 
-                                </tr>
-                                <tr>
-                                    <th scope="row">Address</th>
-                                    <td>xxx</td>
+                                        </tr>
 
-                                </tr>
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
+                                <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                                ?>
+
                             </tbody>
                         </table>
+
                         <div class="col">
                             <button type="submit" class="btn btn-primary btn-block ">Add</button>
                         </div>
@@ -150,7 +149,7 @@
 
 
     <script src="../../js/mdb.min.js"></script>
-    <script src="/pages/admin_module/app.js"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>
