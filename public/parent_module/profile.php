@@ -1,13 +1,13 @@
 <?php
-include '../config.php';
-session_start();
+include '../config.php'; // connect database
+session_start();// connect session to make sure its the right user that login, not different acc
 
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email'])) { // if wrong email detected it will  open main page
     header("Location: ../index.php");
 }
-error_reporting(0);
+error_reporting(0); // to hide default error in input
 $USERNAME;
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])) { // listen to submit button
 
     $username = $_POST['username'];
     $phonenumber = $_POST['phonenumber'];
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
             $phonenumber = $row['phonenumber'];
             $childname = $row['childname'];
             $address = $row['address'];
-            $password = md5($row['password']);
+            $password = md5($row['password']);// store value to variable
         } else {
             echo "<script>alert('Woops! Something Wrong Went.')</script>";
         }
@@ -61,12 +61,14 @@ $resul = mysqli_query($conn, "SELECT * FROM parent WHERE email = '$_SESSION[emai
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto ">
                 <li class="nav-item active">
                     <div class="mx-auto order-0 ">
-                        <a class="navbar-brand mx-auto" href="#">Parent</a>
+                        <a class="navbar-brand mx-auto" href="#">
+                            <h1>Parent</h1>
+                        </a>
 
                 </li>
             </ul>
@@ -76,7 +78,7 @@ $resul = mysqli_query($conn, "SELECT * FROM parent WHERE email = '$_SESSION[emai
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a href="/pages/parent_module/home.html" class="nav-link">Homepage</a>
+                    <a href="../parent_module/home.php" class="nav-link">Homepage</a>
                 </li>
                 <li class="nav-item">
                     <a href="../logout.php
@@ -86,7 +88,21 @@ $resul = mysqli_query($conn, "SELECT * FROM parent WHERE email = '$_SESSION[emai
         </div>
     </nav>
     <table class="table">
-       
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">
+                    <h1></h1>
+
+
+
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
         <tbody>
 
             <tr>
@@ -123,11 +139,11 @@ $resul = mysqli_query($conn, "SELECT * FROM parent WHERE email = '$_SESSION[emai
                     <form style="padding-left: 305px;" method="POST">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         <?php
-                        if (mysqli_num_rows($resul) > 0) {
+                        if (mysqli_num_rows($resul) > 0) {// check if there is data
                         ?>
                             <?php
                             $i = 0;
-                            while ($row = mysqli_fetch_array($resul)) {
+                            while ($row = mysqli_fetch_array($resul)) {// while loop to get all data 
                             ?>
 
                                 <!-- Text input -->

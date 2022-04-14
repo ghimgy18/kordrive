@@ -1,20 +1,11 @@
 <?php
-include '../config.php';
-session_start();
+include '../config.php'; // connect database
+session_start(); // connect session to make sure its the right user that login, not different acc
 
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email'])) {  // if wrong email detected it will  open main page
     header("Location: ../index.php");
 }
-// $email = 'ghuf.yoo@gmail.com';
-// $sql = "SELECT * FROM parent;";
-// $q = mysqli_query($conn, $sql);
-// $resultCheck = mysqli_num_rows($q);
-// if ($resultCheck > 0) {
-//     while ($row = mysqli_fetch_assoc($q)) {
-//         echo $row['firstname'];
-//         echo $row['email'];
-//     }
-// }
+
 
 ?>
 
@@ -31,12 +22,14 @@ if (!isset($_SESSION['email'])) {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto ">
                 <li class="nav-item active">
                     <div class="mx-auto order-0 ">
-                        <a class="navbar-brand mx-auto" href="#">Parent</a>
+                        <a class="navbar-brand mx-auto" href="#">
+                            <h1>Parent</h1>
+                        </a>
 
                 </li>
             </ul>
@@ -46,7 +39,7 @@ if (!isset($_SESSION['email'])) {
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a href="/pages/parent_module/home.html" class="nav-link">Homepage</a>
+                    <a href="../parent_module/home.php" class="nav-link">Homepage</a>
                 </li>
                 <li class="nav-item">
                     <a href="../logout.php
@@ -56,7 +49,7 @@ if (!isset($_SESSION['email'])) {
         </div>
     </nav>
     <table class="table">
-    
+
         <tbody>
 
             <tr>
@@ -89,9 +82,9 @@ if (!isset($_SESSION['email'])) {
                 </th>
 
                 <td>
-                    <div style="padding-top: 20%; padding-left: 400px;">
-                        <?php echo "<h1 >Welcome " . $_SESSION['username'] . "</h1>"; ?>
-                        <h1 style="text-align: center;">Homepage</h1>
+                    <div style="padding-left:400px">
+
+                        <h1 style="text-align: center;"> <?php echo "<h1 >Welcome " . $_SESSION['username'] . " To Your Homepage </h1>"; ?></h1>
 
                     </div>
                 </td>

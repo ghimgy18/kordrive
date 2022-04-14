@@ -1,4 +1,4 @@
-
+//handle navigation
 function gohomepage() {
     document.location.href = './home.php'
 }

@@ -38,14 +38,14 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/mdb.min.css">
-    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <title>Login Page</title>
 </head>
 
-<body>
+<body id="login">
     <div style="padding-top: 10%;"></div>
-    <h2 class="text-center" style="padding-left: 70px; padding-bottom: 2%;">Welcome Back Instructor!</h2>
-    <div style="padding-left: 45%; padding-right: 30;">
+    <h2 class="text-center" style="padding-left: 30px; padding-bottom: 2%;">Welcome Back Instructor!</h2>
+    <div style="padding-left: 40%; padding-right: 30;">
 
         <form method="POST">
             <!-- Email input -->

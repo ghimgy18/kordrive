@@ -1,8 +1,8 @@
 <?php
-include '../config.php';
-session_start();
-error_reporting(0);
-if (isset($_POST['submit'])) {
+include '../config.php';// connect database
+session_start();// connect session to make sure its the right user that login, not different acc
+error_reporting(0);// to hide default error in input 
+if (isset($_POST['submit'])) { // listen to submit button
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
     $phonenumber = $_POST['phonenumber'];
@@ -10,12 +10,12 @@ if (isset($_POST['submit'])) {
     $childname = $_POST['childname'];
     $address = $_POST['address'];
     $password = md5($_POST['password']);
-
-    $sql = "SELECT * FROM parent WHERE email='$email'";
-    $result = mysqli_query($conn, $sql);
-    if (!$result->num_rows > 0) {
+ // store value to variable
+    $sql = "SELECT * FROM parent WHERE email='$email'"; // query to check if email already exist or not
+    $result = mysqli_query($conn, $sql);// execute the query on the parent database
+    if (!$result->num_rows > 0) { // if no same email onthe table 
         $sql = "INSERT INTO parent (fullname,username, email,phonenumber, password,childname,address)
-                VALUES ('$fullname','$username', '$email', '$phonenumber','$password','$childname','$address')";
+                VALUES ('$fullname','$username', '$email', '$phonenumber','$password','$childname','$address')"; //insert value query
         $result = mysqli_query($conn, $sql);
         if ($result) {
             echo "<script>alert('Wow! User Registration Completed.')</script>";
@@ -27,6 +27,7 @@ if (isset($_POST['submit'])) {
             $childname = "";
             $address = "";
             $_POST['password'] = "";
+            // reset the value back after registered
         } else {
             echo "<script>alert('Woops! Something Wrong Went.')</script>";
         }

@@ -1,4 +1,5 @@
 <?php
+// get the database connection
 include 'config.php'
 ?>
 

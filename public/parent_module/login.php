@@ -1,14 +1,14 @@
 <?php
-include '../config.php';
-session_start();
+include '../config.php'; // connect database
+session_start(); // connect session to make sure its the right user that login, not different acc
 
-error_reporting(0);
-if (isset($_SESSION['username'])) {
+error_reporting(0);  // to hide default error in input 
+if (isset($_SESSION['username'])) {  // if the session with the username somehow exist it will log in back(usually happen if user didn't log out)
     header("Location: home.php");
 }
-if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
+if (isset($_POST['submit'])) {// listen to submit button
+    $username = $_POST['username']; 
+    $password = md5($_POST['password']);  // md5 encrypt password
 
     $sql = "SELECT * FROM parent WHERE username='$username' AND password='$password'";
     $result = mysqli_query($conn, $sql);
@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['phonenumber'] = $row['phonenumber'];
         $_SESSION['childname'] = $row['childname'];
         $_SESSION['address'] = $row['address'];
-
+// store data in session so it can be used through out the files
         header("Location: home.php");
     } else {
         echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/mdb.min.css">
-    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../styles.css">
 
 
     <title>Login Page</title>
@@ -45,8 +45,8 @@ if (isset($_POST['submit'])) {
 
 <body id="login">
     <div style="padding-top: 10%;"></div>
-    <h2 class="text-center" style="padding-left: 70px; padding-bottom: 2%;">Welcome Back Parents!</h2>
-    <div style="padding-left: 45%; padding-right: 30;">
+    <h2 class="text-center" style="padding-right: 10px; padding-bottom: 2%;">Welcome Back Parents!</h2>
+    <div style="padding-left: 40%; padding-right: 30;">
 
         <form method="POST">
             <!-- Email input -->

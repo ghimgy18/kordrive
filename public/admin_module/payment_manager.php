@@ -11,27 +11,46 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item active">
+                    <div class="mx-auto order-0 ">
+                        <a class="navbar-brand mx-auto" href="#">
+                        <h1>Admin</h1>
+                        </a>
+
+                </li>
+            </ul>
+        </div>
+
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a href="./home.php" class="nav-link">Homepage</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../logout.php
+                    " class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <table class="table">
         <thead class="black white-text">
             <tr>
                 <th scope="col">
-                    <h1>Admin</h1>
 
 
 
-                </th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th scope="col">
-                    <a href="/pages/admin_module/home.html">Homepage</a>
 
                 </th>
-                <th scope="col">
-                    <a href="/index.html">Logout</a>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
 
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -67,7 +86,7 @@
                 </th>
 
                 <td>
-                    <div style="padding-top: 5%; padding-left: 200px;">
+                    <div style="padding-top: 5%; padding-left: 20px;">
                         <h1 style="text-align: center;">Manage Payment</h1>
 
                     </div>

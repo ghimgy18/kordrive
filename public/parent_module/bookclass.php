@@ -1,17 +1,18 @@
 <?php
-include '../config.php';
-session_start();
 
-if (!isset($_SESSION['email'])) {
+include '../config.php'; // connect database
+session_start(); // connect session to make sure its the right user that login, not different acc
+
+if (!isset($_SESSION['email'])) { // if wrong email detected it will  open main page
     header("Location: ../index.php");
 }
-error_reporting(0);
-$resul = mysqli_query($conn, "SELECT * FROM instructor");
-$child =  mysqli_query($conn, "SELECT childname FROM parent WHERE email = '$_SESSION[email]'");
+error_reporting(0); // to hide default error in input 
+$resul = mysqli_query($conn, "SELECT * FROM instructor"); // query for instructor table
+$child =  mysqli_query($conn, "SELECT childname FROM parent WHERE email = '$_SESSION[email]'"); // query for parent table
 
-if (isset($_POST['submit'])) {
-    $row = mysqli_fetch_array($child);
-    list($username,$instructoremail) = explode('|', $_POST['username']);
+if (isset($_POST['submit'])) { // listen to submit button
+    $row = mysqli_fetch_array($child); //get array of table data
+    list($username, $instructoremail) = explode('|', $_POST['username']);
     // $username = $_POST['username'];
     $date = $_POST['date'];
     $time = $_POST['time'];
@@ -20,11 +21,12 @@ if (isset($_POST['submit'])) {
     $email = $_SESSION['email'];
 
     $status = 'Verifying';
+                                                         // store value to variable
     $sql = "INSERT INTO booking (instructorname, date, time,childname,email,instructoremail,status)
-VALUES (' $username ', ' $date ', ' $time ', '$childname','$email','$instructoremail' ,'$status')";
-    $result = mysqli_query($conn, $sql);
-    if ($result) {
-        echo "<script>alert('Wow! sukses.')</script>";
+VALUES (' $username ', ' $date ', ' $time ', '$childname','$email','$instructoremail' ,'$status')"; // insert value into booking table
+    $result = mysqli_query($conn, $sql); //  performs a query on a database.
+    if ($result) { // check if right
+        echo "<script>alert('Wow! success.')</script>";
         echo "<script>window.location = home.php</script>";
     } else {
         echo "<script>alert('Woops! Something Wrong Went.')</script>";
@@ -49,12 +51,14 @@ VALUES (' $username ', ' $date ', ' $time ', '$childname','$email','$instructore
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto ">
                 <li class="nav-item active">
                     <div class="mx-auto order-0 ">
-                        <a class="navbar-brand mx-auto" href="#">Parent</a>
+                        <a class="navbar-brand mx-auto" href="#">
+                            <h1>Parent</h1>
+                        </a>
 
                 </li>
             </ul>
@@ -64,7 +68,7 @@ VALUES (' $username ', ' $date ', ' $time ', '$childname','$email','$instructore
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a href="/pages/parent_module/home.html" class="nav-link">Homepage</a>
+                    <a href="../parent_module/home.php" class="nav-link">Homepage</a>
                 </li>
                 <li class="nav-item">
                     <a href="../logout.php
@@ -74,7 +78,21 @@ VALUES (' $username ', ' $date ', ' $time ', '$childname','$email','$instructore
         </div>
     </nav>
     <table class="table">
-       
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">
+                    <h1></h1>
+
+
+
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
         <tbody>
 
             <tr>
@@ -107,16 +125,16 @@ VALUES (' $username ', ' $date ', ' $time ', '$childname','$email','$instructore
                 </th>
 
                 <td>
-                    <h1 style="padding-left: 305px; text-align: center;">Book Class</h1>
-                    <div style="padding-left: 50%; padding-top: 10%;">
+                    <h1 style="padding-left: 25px; text-align: center;">Book Class</h1>
+                    <div style="padding-left: 10%; padding-top: 10%;">
 
 
                         <form method="post">
 
                             <?php
-                            if (mysqli_num_rows($resul) > 0) {
+                            if (mysqli_num_rows($resul) > 0) { // check if there is data
                                 $i = 0;
-                                while ($row = mysqli_fetch_array($resul)) {
+                                while ($row = mysqli_fetch_array($resul)) { // while loop to get all data 
                             ?>
 
                                     <div style="padding-top: 10px;" class="form-check ">
@@ -134,7 +152,7 @@ VALUES (' $username ', ' $date ', ' $time ', '$childname','$email','$instructore
                                     $i++;
                                 }
                             } else {
-                                echo "No result found";
+                                echo "No result found"; // if no data
                             }
                             ?>
 

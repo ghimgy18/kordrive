@@ -35,11 +35,36 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE instructoremail = '$_S
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item active">
+                    <div class="mx-auto order-0 ">
+                        <a class="navbar-brand mx-auto" href="#">
+                            <h1>Instructor</h1>
+                        </a>
+
+                </li>
+            </ul>
+        </div>
+
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a href="./home.php" class="nav-link">Homepage</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../logout.php
+                    " class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <table class="table">
         <thead class="black white-text">
             <tr>
                 <th scope="col">
-                    <h1>Instructor</h1>
 
 
 
@@ -47,14 +72,7 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE instructoremail = '$_S
                 <th></th>
 
 
-                <th scope="col">
-                    <a href="/pages/instructor_module/home.html">Homepage</a>
 
-                </th>
-                <th scope="col">
-                    <a href="../logout.php">Logout</a>
-
-                </th>
             </tr>
         </thead>
         <tbody>

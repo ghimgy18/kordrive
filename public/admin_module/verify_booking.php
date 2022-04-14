@@ -57,31 +57,51 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/mdb.min.css">
     <link rel="stylesheet" href="../../styles.css">
+
     <title>Admin Homepage</title>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item active">
+                    <div class="mx-auto order-0 ">
+                        <a class="navbar-brand mx-auto" href="#">
+                        <h1>Admin</h1>
+                        </a>
+
+                </li>
+            </ul>
+        </div>
+
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a href="./home.php" class="nav-link">Homepage</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../logout.php
+                    " class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <table class="table">
         <thead class="black white-text">
             <tr>
                 <th scope="col">
-                    <h1>Admin</h1>
 
 
 
-                </th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th scope="col">
-                    <a href="/pages/admin_module/home.html">Homepage</a>
 
                 </th>
-                <th scope="col">
-                    <a href="/index.html">Logout</a>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
 
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -117,7 +137,7 @@ if (isset($_POST['submit'])) {
                 </th>
 
                 <td>
-                    <div style="padding-top: 5%; padding-left: 200px;">
+                    <div style="padding-top: 5%; padding-left: 20px;">
                         <h1 style="text-align: center;">Verify Booking</h1>
 
                     </div>
@@ -137,6 +157,7 @@ if (isset($_POST['submit'])) {
                             <tbody>
                                 <?php
                                 if (mysqli_num_rows($resul) > 0) {
+
                                 ?>
                                     <?php
                                     $i = 0;
@@ -148,13 +169,18 @@ if (isset($_POST['submit'])) {
                                             <td><?php echo $row['date'] ?></td>
                                             <td><?php echo $row['time'] ?></td>
                                             <td>
+                                                <select name="status" id="status" class="status">
+                                                    <option value="accept">Accept</option>
+                                                    <option value="decline">Decline</option>
 
-                                                <input type="text" id="appt" name="status" required value="<?php echo $row['status']; ?>">
+                                                </select>
+
+
 
                                             </td>
                                             <td>
 
-                                                <input type="text" id="appt" name="comment" required value="<?php echo $row['comment']; ?>">
+                                                <input type="text" id="comment" name="comment" required value="<?php echo $row['comment']; ?>">
 
                                             </td>
                                             <td>
@@ -169,6 +195,7 @@ if (isset($_POST['submit'])) {
                                         $i++;
                                     }
                                     ?>
+
                                 <?php
                                 } else {
                                     echo "No result found";
@@ -198,6 +225,50 @@ if (isset($_POST['submit'])) {
 
     <script src="../../js/mdb.min.js"></script>
     <script src="./app.js"></script>
+
+
+    <script>
+        const activities = document.getElementById("status");
+
+        // activities.addEventListener("click", function() {
+        //     var options = activities.querySelectorAll("option");
+        //     var count = options.length;
+        //     if(typeof(count) === "undefined" || count < 2)
+        //     {
+        //         addActivityItem();
+        //     }
+        // });
+
+        activities.addEventListener("click", function() {
+
+            if (activities.value == "accept") {
+                document.getElementById("comment").disabled = true;
+                //document.getElementById("comment").hidden = true
+                //addActivityItem();
+            } else {
+
+                document.getElementById("comment").disabled = false;
+            }
+
+        });
+
+
+        function addActivityItem() {
+            // ... Code to add item here
+        }
+        // $(function() {
+        //     $('#status').on('change', function(event) {
+        //         if ($(this).val() === 'accept') {
+        //             $('#appt').val("");
+        //             $('#appt').attr('readonly', true);
+        //         } else if ($(this).val() === 'decline') {
+        //             $('#appt').attr('readonly', false);
+        //         }
+        //         // $(this).prev('input').val($(this).val());
+        //     });
+        // });
+    </script>
+
 </body>
 
 </html>

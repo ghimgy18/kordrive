@@ -1,3 +1,33 @@
+<?php
+require_once("../config.php");
+//include '../config.php';
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+}
+error_reporting(0);
+$resul = mysqli_query($conn, "SELECT * FROM parent;");
+$row = mysqli_fetch_array($resul);
+
+
+if (isset($_POST['delete'])) {
+    $sql = "DELETE FROM parent WHERE username= $row[username]";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        echo "<script>alert('Wow! sukses.')</script>";
+        echo "<script>window.location = home.php</script>";
+    } else {
+        echo "<script>alert('Woops! Something Wrong Went.')</script>";
+    }
+}
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,27 +41,46 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item active">
+                    <div class="mx-auto order-0 ">
+                        <a class="navbar-brand mx-auto" href="#">
+                        <h1>Admin</h1>
+                        </a>
+
+                </li>
+            </ul>
+        </div>
+
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a href="./home.php" class="nav-link">Homepage</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../logout.php
+                    " class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <table class="table">
         <thead class="black white-text">
             <tr>
                 <th scope="col">
-                    <h1>Admin</h1>
 
 
 
-                </th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th scope="col">
-                    <a href="/pages/admin_module/home.html">Homepage</a>
 
                 </th>
-                <th scope="col">
-                    <a href="/index.html">Logout</a>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
 
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -67,8 +116,8 @@
                 </th>
 
                 <td>
-                    <div style="padding-top: 5%; padding-left: 200px;">
-                        <h1 style="text-align: center;">Parent List</h1>
+                    <div style="padding-top: 5%; padding-left: 20px;">
+                        <h1 style="text-align: center;">View Parent</h1>
 
                     </div>
                     <div style="padding-left: 100px;">
@@ -77,36 +126,54 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Username</th>
-                                    <th scope="col">Email</th>
                                     <th scope="col">Phone Number</th>
                                     <th scope="col">Children Name</th>
+                                    <th scope="col">Add/Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <?php
+                                if (mysqli_num_rows($resul) > 0) {
+                                ?>
+                                    <?php
+                                    $i = 0;
+                                    while ($row = mysqli_fetch_assoc($resul)) {
+                                        $fullname = $row['fullname'];
+                                        $Username = $row['username'];
+                                        $phonenumber = $row['phonenumber'];
+                                        $childname = $row['childname'];
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $fullname ?></td>
+                                            <td><?php echo $Username ?></td>
+                                            <td><?php echo $phonenumber ?></td>
+                                            <td><?php echo $childname ?></td>
+                                            <td>
 
-                                    <td>xxx</td>
-                                    <td>xxxx</td>
-                                    <td>xxx@xxx.xxx</td>
-                                    <td>xxx-xxxxxxxx</td>
-                                    <td>xxxxxxxxxx</td>
+
+                                                <a href="delete.php?GetID=<?php echo $Username ?>">Delete</a>
 
 
-                                </tr>
-                                <tr>
-                                    <td>xxx</td>
-                                    <td>xxxx</td>
-                                    <td>xxx@xxx.xxx</td>
-                                    <td>xxx-xxxxxxxx</td>
-                                    <td>xxxxxxxxxx</td>
 
+                                            </td>
 
-                                </tr>
+                                        </tr>
 
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
+                                <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                                ?>
 
                             </tbody>
                         </table>
-
+                        <div class="col">
+                            <button name="add" type="submit" class="btn btn-primary btn-block ">Add</button>
+                        </div>
 
                     </div>
 

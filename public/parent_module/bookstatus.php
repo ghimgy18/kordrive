@@ -1,12 +1,12 @@
 <?php
-include '../config.php';
-session_start();
+include '../config.php'; // connect database
+session_start(); // connect session to make sure its the right user that login, not different acc
 
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email'])) { // if wrong email detected it will  open main page
     header("Location: ../index.php");
 }
-error_reporting(0);
-$resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[email]' ");
+error_reporting(0); // to hide default error in input
+$resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[email]' "); // query for booking table
 
 
 
@@ -30,11 +30,13 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[ema
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto ">
                 <li class="nav-item active">
                     <div class="mx-auto order-0 ">
-                        <a class="navbar-brand mx-auto" href="#">Parent</a>
+                        <a class="navbar-brand mx-auto" href="#">
+                            <h1>Parent</h1>
+                        </a>
 
                 </li>
             </ul>
@@ -44,7 +46,7 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[ema
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a href="/pages/parent_module/home.html" class="nav-link">Homepage</a>
+                    <a href="../parent_module/home.php" class="nav-link">Homepage</a>
                 </li>
                 <li class="nav-item">
                     <a href="../logout.php
@@ -55,6 +57,21 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[ema
     </nav>
 
     <table class="table">
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">
+                    <h1></h1>
+
+
+
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
         <tbody>
 
             <tr>
@@ -100,11 +117,11 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[ema
                             </thead>
                             <tbody>
                                 <?php
-                                if (mysqli_num_rows($resul) > 0) {
+                                if (mysqli_num_rows($resul) > 0) { // check if there is data
                                 ?>
                                     <?php
                                     $i = 0;
-                                    while ($row = mysqli_fetch_array($resul)) {
+                                    while ($row = mysqli_fetch_array($resul)) { // while loop to get all data 
                                     ?>
                                         <tr>
 
@@ -120,7 +137,7 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[ema
                                     ?>
                                 <?php
                                 } else {
-                                    echo "No result found";
+                                    echo "No result found"; // if no data
                                 }
                                 ?>
                             </tbody>

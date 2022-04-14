@@ -1,3 +1,5 @@
+//handle navigation
+
 function logIn() {
     document.location.href = './home.php'
 

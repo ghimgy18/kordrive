@@ -1,3 +1,4 @@
+//handle navigation
 // function logIn() {
 //     window.location = 'home.html'
 // }
@@ -16,5 +17,9 @@ function gomanagepayment() {
 function goinstructorscheduler() {
     document.location.href = './instructor_scheduler.php'
 }
+
+
+
+
 
 

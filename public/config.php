@@ -1,5 +1,5 @@
 <?php
-
+// credentials that needed to connect to database
 $server = "localhost";
 $user = "root";
 $pass = "";

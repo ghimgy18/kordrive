@@ -1,3 +1,18 @@
+<?php
+include '../config.php';
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+}
+error_reporting(0);
+$resul = mysqli_query($conn, "SELECT * FROM booking;");
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,27 +26,46 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item active">
+                    <div class="mx-auto order-0 ">
+                        <a class="navbar-brand mx-auto" href="#">
+                            <h1>Admin</h1>
+                        </a>
+
+                </li>
+            </ul>
+        </div>
+
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a href="./home.php" class="nav-link">Homepage</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../logout.php
+                    " class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <table class="table">
         <thead class="black white-text">
             <tr>
                 <th scope="col">
-                    <h1>Admin</h1>
 
 
 
-                </th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th scope="col">
-                    <a href="/pages/admin_module/home.html">Homepage</a>
 
                 </th>
-                <th scope="col">
-                    <a href="/index.html">Logout</a>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
 
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -67,7 +101,7 @@
                 </th>
 
                 <td>
-                    <div style="padding-top: 5%; padding-left: 200px;">
+                    <div style="padding-top: 5%; padding-left: 20px;">
                         <h1 style="text-align: center;">Instructor Schedule</h1>
 
                     </div>
@@ -75,31 +109,39 @@
                         <table style="width: 700px;" class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Phone number</th>
+                                    <th scope="col">Children Name</th>
+                                    <th scope="col">Instructor name</th>
+                                    <th scope="col">Date</th>
                                     <th scope="col">Class time</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <?php
+                                if (mysqli_num_rows($resul) > 0) {
+                                ?>
+                                    <?php
+                                    $i = 0;
+                                    while ($row = mysqli_fetch_array($resul)) {
+                                    ?>
+                                        <tr>
 
-                                    <td>xxx</td>
-                                    <td>xxxx</td>
-                                    <td>xxx-xxxxxxxx</td>
-                                    <td>xx.xx</td>
-
-
-
-                                </tr>
-                                <tr>
-                                    <td>xxx</td>
-                                    <td>xxxx</td>
-                                    <td>xxx-xxxxxxxx</td>
-                                    <td>xx.xx</td>
+                                            <td><?php echo $row['childname'] ?></td>
+                                            <td><?php echo $row['instructorname'] ?></td>
+                                            <td><?php echo $row['date'] ?></td>
+                                            <td><?php echo $row['time'] ?></td>
 
 
-                                </tr>
+
+                                        </tr>
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
+                                <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                                ?>
 
 
                             </tbody>
