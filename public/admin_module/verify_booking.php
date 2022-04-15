@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
 
     $status = $_POST['status'];
     $comment = $_POST['comment'];
-    $username = $_POST['usernam'];
+    $username = $_POST['username'];
 
 
     $sql = "SELECT * FROM booking WHERE childname='$childname'";
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
                 <li class="nav-item active">
                     <div class="mx-auto order-0 ">
                         <a class="navbar-brand mx-auto" href="#">
-                        <h1>Admin</h1>
+                            <h1>Admin</h1>
                         </a>
 
                 </li>
