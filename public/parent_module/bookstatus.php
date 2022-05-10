@@ -163,10 +163,12 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[ema
                 <table class="table table-striped">
                     <thead class="thead-dark">
                         <tr class="bg-dark" style="font-weight: bold; color:white;">
+                            <th scope="col">Teacher</th>
                             <th scope="col">Children</th>
                             <th scope="col">Time</th>
                             <th scope="col">Date</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Reason</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -178,11 +180,12 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE email = '$_SESSION[ema
                             while ($row = mysqli_fetch_array($resul)) { // while loop to get all data 
                             ?>
                                 <tr>
-
+                                    <td>Mr <?php echo $row['instructorname'] ?></td>
                                     <td><?php echo $row['childname'] ?></td>
                                     <td><?php echo $row['time'] ?></td>
                                     <td><?php echo $row['date'] ?></td>
                                     <td><?php echo $row['status'] ?></td>
+                                    <td><?php echo $row['comment'] ?></td>
                                 </tr>
 
                             <?php
