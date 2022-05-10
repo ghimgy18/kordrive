@@ -12,7 +12,7 @@ error_reporting(0);
 
 
 
-$resul = mysqli_query($conn, "SELECT * FROM booking WHERE instructoremail = '$_SESSION[email]'");
+$resul = mysqli_query($conn, "SELECT * FROM booking WHERE instructoremail = '$_SESSION[email]' AND status = 'Accepted' ");
 
 
 
@@ -32,125 +32,161 @@ $resul = mysqli_query($conn, "SELECT * FROM booking WHERE instructoremail = '$_S
     <link rel="stylesheet" href="../../css/mdb.min.css">
     <link rel="stylesheet" href="../../styles.css">
     <title>Instructor Homepage</title>
+    <style>
+        .sidebar {
+
+            color: black;
+            top: 0;
+            /* bottom: 0; */
+            left: 0;
+            z-index: 100;
+            padding-left: 20px;
+            box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
+            height: 100vh;
+        }
+
+        .sidebar .nav-link {
+            font-weight: 300;
+            color: #dbdbdb;
+        }
+
+        .nav-link {
+            text-align: left;
+            padding: 0.5rem 1rem;
+            color: #0d6efd;
+            text-decoration: none;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+        }
+
+        #edit {
+            margin: 50px;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav mr-auto ">
-                <li class="nav-item active">
-                    <div class="mx-auto order-0 ">
-                        <a class="navbar-brand mx-auto" href="#">
-                            <h1>Instructor</h1>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Instructor</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form> -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    </ul>
+                    <a class="nav-link active" style="color:white" aria-current="page" href="../instructor_module/home.php">Home</a>
+                    <a class="nav-link px-3" href="../logout.php">Sign out</a>
+                </div>
+            </div>
+        </nav>
+
+
+
+        </nav>
+    </header>
+    <div class="row">
+
+
+        <nav id="sidebarMenu" class="col-md-4 col-lg-2 d-md-block sidebar collapse" style="background-color: #3d3d3d;">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a onclick="gohomepage()" class="nav-link active" aria-current="page" href="#">
+                            <span class="svg-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </span>
+                            Home
                         </a>
-
-                </li>
-            </ul>
-        </div>
-
-        </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a href="./home.php" class="nav-link">Homepage</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../logout.php
-                    " class="nav-link">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <table class="table">
-        <thead class="black white-text">
-            <tr>
-                <th scope="col">
-
-
-
-                </th>
-                <th></th>
-
-
-
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr>
-                <th style="width: 200px;">
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="gohomepage()" style="height: 100px; width: 200px; ">
-                            Homepage
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="goeditprofile()" style="height: 100px; width: 200px;">
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a onclick="goeditprofile()" class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file" aria-hidden="true">
+                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                <polyline points="13 2 13 9 20 9"></polyline>
+                            </svg>
                             Edit Profile
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="gocheckbooking()" style="height: 100px; width: 200px;">
+                        </a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a onclick="gocheckbooking()" class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart" aria-hidden="true">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
                             Check Booking
-                        </button>
-                    </div>
-                </th>
+                        </a>
+                    </li>
+                    <hr>
 
-                <td>
-                    <h1 style="padding-left: 105px; text-align: center;">Booking Status</h1>
-                    <div style="padding-left: 100px;">
-                        <table style="width: 1000px;" class="table">
-                            <thead>
+
+
+                </ul>
+
+
+            </div>
+        </nav>
+
+
+
+        <div id="edit" class="col text-center">
+            <h3 class="mb-2" style="text-align: start;">Booking Class Status</h3>
+            <div>
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr class="bg-dark" style="font-weight: bold; color:white;">
+                            <th scope="col">Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if (mysqli_num_rows($resul) > 0) {
+                        ?>
+                            <?php
+                            $i = 0;
+                            while ($row = mysqli_fetch_array($resul)) {
+                            ?>
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Time</th>
+
+                                    <td><?php echo $row['childname'] ?></td>
+                                    <td>12-Jun-22</td>
+                                    <td>2pm</td>
 
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if (mysqli_num_rows($resul) > 0) {
-                                ?>
-                                    <?php
-                                    $i = 0;
-                                    while ($row = mysqli_fetch_array($resul)) {
-                                    ?>
-                                        <tr>
+                            <?php
+                                $i++;
+                            }
+                            ?>
+                        <?php
+                        } else {
+                            echo "No result found";
+                        }
+                        ?>
 
-                                            <td><?php echo $row['childname'] ?></td>
-                                            <td>12-Jun-22</td>
-                                            <td>2pm</td>
-
-                                        </tr>
-                                    <?php
-                                        $i++;
-                                    }
-                                    ?>
-                                <?php
-                                } else {
-                                    echo "No result found";
-                                }
-                                ?>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </td>
-
-            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 
 
 
-
-        </tbody>
-    </table>
-
-
-
-    <script src="../../js/mdb.min.js"></script>
-    <script src="./app.js"></script>
+        <script src="../../js/mdb.min.js"></script>
+        <script src="./app.js"></script>
 </body>
 
 </html>

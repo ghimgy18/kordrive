@@ -3,15 +3,35 @@
     height: 100vh;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    mask-image: url('images/bgimage.jpg');
+    background-color: rgba(0, 0, 0, 0.8);
+}
+#intro2{
+    background-image: url('images/2.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#intro3{
+    background-image: url('images/ins.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#intro4{
+    background-image: url('./images/ad.avif');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
-#login {
+/* #login {
     background-color: #188c83;
 
     height: 100vh;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-}
+} */
 
 #padding {
     padding-top: 15%;

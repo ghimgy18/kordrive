@@ -6,43 +6,9 @@ if (!isset($_SESSION['email'])) {
     header("Location: ../index.php");
 }
 error_reporting(0);
-$resul = mysqli_query($conn, "SELECT * FROM booking;");
-
-if (isset($_POST['submit'])) {
-
-    $status = $_POST['status'];
-    $comment = $_POST['comment'];
-    $username = $_POST['username'];
+$resul = mysqli_query($conn, "SELECT * FROM booking WHERE status = 'Verifying';");
 
 
-    $sql = "SELECT * FROM booking WHERE childname='$childname'";
-    $result = mysqli_query($conn, $sql);
-
-
-
-    if (!$result->num_rows > 0) {
-        $sql = "UPDATE instructor  SET status='$_POST[status]', comment= '$comment' WHERE childname='$_SESSION[childname]'";
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
-            $row = mysqli_fetch_assoc($result);
-            $_SESSION['username'] = $row['username'];
-
-            echo "<script>alert('Wow! User Registration Completed.')</script>";
-            echo "<meta http-equiv='refresh' content='1'>";
-
-
-
-            $phonenumber = $row['phonenumber'];
-            $childname = $row['childname'];
-            $address = $row['address'];
-            $password = md5($row['password']);
-        } else {
-            echo "<script>alert('Woops! Something Wrong Went.')</script>";
-        }
-    } else {
-        echo "<script>alert('Woops! Some value are same as the old one.')</script>";
-    }
-}
 
 
 ?>
@@ -57,169 +23,233 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/mdb.min.css">
     <link rel="stylesheet" href="../../styles.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
     <title>Admin Homepage</title>
+    <style>
+        .sidebar {
+
+            color: black;
+            top: 0;
+            /* bottom: 0; */
+            left: 0;
+            z-index: 100;
+            padding-left: 20px;
+            box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
+            height: 100vh;
+        }
+
+        .sidebar .nav-link {
+            font-weight: 300;
+            color: #dbdbdb;
+        }
+
+        .nav-link {
+            text-align: left;
+            padding: 0.5rem 1rem;
+            color: #0d6efd;
+            text-decoration: none;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+        }
+
+        #edit {
+            margin: 50px;
+        }
+
+        #container {
+            text-align: end;
+
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div style="padding-left: 50px;" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav mr-auto ">
-                <li class="nav-item active">
-                    <div class="mx-auto order-0 ">
-                        <a class="navbar-brand mx-auto" href="#">
-                            <h1>Admin</h1>
-                        </a>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Admin</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form> -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../admin_module/home.php"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul> -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled"></a>
+                        </li>
+                    </ul>
+                    <a class="nav-link active" style="color:white" aria-current="page" href="../admin_module/home.php">Home</a>
+                    <a class="nav-link px-3" href="../logout.php">Sign out</a>
+                </div>
+            </div>
+        </nav>
 
-                </li>
-            </ul>
-        </div>
-
-        </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a href="./home.php" class="nav-link">Homepage</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../logout.php
-                    " class="nav-link">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <table class="table">
-        <thead class="black white-text">
-            <tr>
-                <th scope="col">
 
 
+        </nav>
+    </header>
+
+    <div class="row">
 
 
-                </th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr>
-                <th style="width: 200px;">
-
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="goviewinstructor()" style="height: 100px; width: 200px;">
+        <nav id="sidebarMenu" class="col-md-4 col-lg-2 d-md-block sidebar collapse" style="background-color: #3d3d3d;">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a onclick="goviewinstructor()" class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file" aria-hidden="true">
+                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                <polyline points="13 2 13 9 20 9"></polyline>
+                            </svg>
                             View Instructor
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="goverifybooking()" style="height: 100px; width: 200px;">
+                        </a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a onclick="goverifybooking()" class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file" aria-hidden="true">
+                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                <polyline points="13 2 13 9 20 9"></polyline>
+                            </svg>
                             Verify Booking
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="goviewparent()" style="height: 100px; width: 200px; ">
+                        </a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a onclick="goviewparent()" class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart" aria-hidden="true">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
                             View Parent
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="gomanagepayment()" style="height: 100px; width: 200px; ">
-                            Manage payment
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="goinstructorscheduler()" style="height: 100px; width: 200px; ">
-                            Instructor schedule
-                        </button>
-                    </div>
-                </th>
+                        </a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a onclick="gomanagepayment()" class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" aria-hidden="true">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            Manage Payment
+                        </a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a onclick="goinstructorscheduler()" class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2" aria-hidden="true">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            Instructor Schedule
+                        </a>
+                    </li>
+                    <hr>
 
-                <td>
-                    <div style="padding-top: 5%; padding-left: 20px;">
-                        <h1 style="text-align: center;">Verify Booking</h1>
 
-                    </div>
-                    <div style="padding-left: 100px;">
-                        <table style="width: 700px;" class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Reason</th>
-                                    <th scope="col">Save</th>
+                </ul>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if (mysqli_num_rows($resul) > 0) {
 
-                                ?>
-                                    <?php
-                                    $i = 0;
-                                    while ($row = mysqli_fetch_array($resul)) {
-                                    ?>
-                                        <tr>
+            </div>
+        </nav>
 
-                                            <td><?php echo $row['childname'] ?></td>
-                                            <td><?php echo $row['date'] ?></td>
-                                            <td><?php echo $row['time'] ?></td>
-                                            <td>
-                                                <select name="status" id="status" class="status">
-                                                    <option value="accept">Accept</option>
-                                                    <option value="decline">Decline</option>
-
-                                                </select>
+        <div id="edit" class="col text-center">
 
 
 
-                                            </td>
-                                            <td>
+            <h3 class="mb-2" style="text-align: start;">Verify Booking</h3>
 
-                                                <input type="text" id="comment" name="comment" required value="<?php echo $row['comment']; ?>">
 
-                                            </td>
-                                            <td>
+            <table class="table  table-striped table-bordered" id="tbl">
+                <thead>
+                    <tr class="bg-dark" style="font-weight: bold; color:white;">
+                        <th scope="col">Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Status</th>
 
-                                                <button name="submit" type="submit" class="btn btn-primary btn-block ">Update</button>
+                        <th scope="col">Save</th>
 
-                                            </td>
-
-                                        </tr>
-
-                                    <?php
-                                        $i++;
-                                    }
-                                    ?>
-
-                                <?php
-                                } else {
-                                    echo "No result found";
-                                }
-                                ?>
-
-                            </tbody>
-                        </table>
+                    </tr>
+                </thead>
+                <tbody>
 
 
 
-                    </div>
+                    <?php
+                    if (mysqli_num_rows($resul) > 0) {
+
+                    ?>
+                        <?php
+                        $i = 0;
+                        while ($row = mysqli_fetch_array($resul)) {
+                        ?>
+                            <tr id=<?php echo $row['id'] ?>>
+
+                                <td class="row-data"><?php echo $row['childname'] ?></td>
+                                <td class="row-data"><?php echo $row['date'] ?></td>
+                                <td class="row-data"><?php echo $row['time'] ?></td>
+                                <td class="row-data"><?php echo $row['status'] ?></td>
+
+                                <td class="row-data">
+
+                                    <a href="updatebooking.php?id=<?php echo $row['id'] ?>">Update</a>
+
+                                </td>
+
+                            </tr>
+
+                        <?php
+                            $i++;
+                        }
+                        ?>
+
+                    <?php
+                    } else {
+                        echo "No result found";
+                    }
+                    ?>
+
+                </tbody>
+            </table>
 
 
-                </td>
 
-            </tr>
-
+        </div>
 
 
+    </div>
 
 
-        </tbody>
-    </table>
+
+
+
 
 
 
@@ -228,29 +258,97 @@ if (isset($_POST['submit'])) {
 
 
     <script>
-        const activities = document.getElementById("status");
+        function get(select) {
+            let value = select.value;
+            console.log(value);
+        }
+        // const activities = document.querySelectorAll("status"); // grab all checkbox: return nodeList
+        // const div_array = [...activities]; // convert jadi array
 
-        // activities.addEventListener("click", function() {
-        //     var options = activities.querySelectorAll("option");
-        //     var count = options.length;
-        //     if(typeof(count) === "undefined" || count < 2)
-        //     {
-        //         addActivityItem();
-        //     }
+
+        // // activities.addEventListener("click", function() {
+        // //     var options = activities.querySelectorAll("option");
+        // //     var count = options.length;
+        // //     if(typeof(count) === "undefined" || count < 2)
+        // //     {
+        // //         addActivityItem();
+        // //     }
+        // // });
+        // div_array.forEach(activity => {
+        //     activity.addEventListener("click", function() {
+
+        //         if (activities.value == "accept") {
+        //             document.querySelector("comment").disabled = true;
+        //             //document.getElementById("comment").hidden = true
+        //             //addActivityItem();
+        //         } else {
+
+        //             document.querySelector("comment").disabled = false;
+        //         }
+
+        //     });
+        // })
+        // $('#tbl').on('change', 'select', function() {
+        //     let row = $(this).closest('tr');
+        //     let parent = $(this).parent('tr');
+        //     let value = $(this).val();
+
+
+        //     $('input', row).each(function(index, element) {
+        //         console.log(index)
+        //         if(value === 'decline') {
+        //             $('input').attr("disabled", true);
+        //         } else{
+        //             $('input').attr("disabled", false);
+        //         }
+
+        //     });
+        // })
+        // $("table#tbl > tbody > tr > td").each(function(row, tr) {
+
+        //     console.log($(tr).children('td').eq(1))
         // });
 
-        activities.addEventListener("click", function() {
+        var status =
+            document.getElementById("status").value;
+        console.log(status)
 
-            if (activities.value == "accept") {
-                document.getElementById("comment").disabled = true;
-                //document.getElementById("comment").hidden = true
-                //addActivityItem();
-            } else {
 
-                document.getElementById("comment").disabled = false;
-            }
 
-        });
+        function getCombo() {
+            var rowId =
+                event.target.parentNode.parentNode.id;
+            console.log(rowId)
+            //this gives id of tr whose button was clicked
+            var data =
+                document.getElementById(rowId).querySelectorAll(".row-data");
+            var status =
+                document.getElementById(rowId).querySelectorAll(".status");
+            var comment =
+                document.getElementById(rowId).querySelectorAll(".comment");
+            /*returns array of all elements with 
+            "row-data" class within the row with given id*/
+            // var status = status[3];
+            status.forEach(status => {
+                let stat = status.options[status.selectedIndex].text
+                console.log(stat)
+                if (stat === "Decline") {
+                    //    comment.forEach(comments => comments.setAttribute('disabled', false))
+                    data[4].innerHTML.setAttribute('disabled', false)
+                }
+                // } else if (stat === "Decline"){
+                //     comment.forEach(comment => comment.setAttribute('disabled', false))
+                // }
+            })
+
+            // console.log(data[4].innerHTML.setAttribute('disabled', false))
+
+
+
+        }
+
+
+
 
 
         function addActivityItem() {
