@@ -139,7 +139,7 @@ if (!isset($_SESSION['email'])) {
             <div id="intro3" class="bg-image shadow-2-strong">
                 <div class="mask" style="background-color: rgba(0, 0, 0, 0.4);">
                     <div class="container d-flex align-items-center justify-content-center text-center h-100">
-                        <?php echo "<h4 >Welcome Teacher " . $_SESSION['username'] . " To Your Homepage</h4>"; ?>
+                        <?php echo "<h1 >Welcome Teacher " . $_SESSION['username'] . " To Your Homepage</h1>"; ?>
                     </div>
                 </div>
             </div>
