@@ -17,7 +17,7 @@ if (!isset($_SESSION['email'])) {  // if wrong email detected it will  open main
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/mdb.min.css">
-    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <title>Parent Homepage</title>
 
     <style>
@@ -152,105 +152,18 @@ if (!isset($_SESSION['email'])) {  // if wrong email detected it will  open main
 
 
 
-        <div class="col text-center">
+        <div id="edit" class="col text-center">
             <div id="intro2" class="bg-image shadow-2-strong">
                 <div class="mask" style="background-color: rgba(0, 0, 0, 0.4);">
                     <div class="container d-flex align-items-center justify-content-center text-center h-100">
-                        <?php echo "<h4 >Welcome " . $_SESSION['username'] . " To Your Homepage </h4>"; ?>
+                        <?php echo "<h1 >Welcome " . $_SESSION['username'] . " To Your Homepage </h1>"; ?>
 
                     </div>
                 </div>
             </div>
 
 
-            <!-- <div class="p-3 bg-light" style="width: 280px; height: 50px;">
-       
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <button onclick="gohomepage()" class="nav-link active w-100" aria-current="page">
-                    Home
-                </button>
-            </li>
-            <li>
-                <button onclick="goeditprofile()" href="#" class="nav-link link-dark w-100">
-                    Edit Profile
-                </button>
-            </li>
-            <li>
-                <button onclick="gobookclass()" class="nav-link link-dark w-100">
-                    Book Class
-                </button>
-            </li>
-            <li>
-                <button onclick="gobookstatus()" href="#" class="nav-link link-dark w-100">
-                    Booking Status
-                </button>
-            </li>
-            <li>
-                <button onclick="gopayment()" class="nav-link link-dark w-100">
-                    Payment
-                </button>
-            </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
 
-
-        </div>
-    </div>
-    </div> -->
-
-
-            <!-- <table class="table">
-
-        <tbody>
-
-            <tr>
-                <th style="width: 200px;">
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="gohomepage()" style="height: 100px; width: 200px; ">
-                            Homepage
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="goeditprofile()" style="height: 100px; width: 200px;">
-                            Edit Profile
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="gobookclass()" style="height: 100px; width: 200px;">
-                            Book class
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="gobookstatus()" style="height: 100px; width: 200px;">
-                            Booking Status
-                        </button>
-                    </div>
-                    <div style="padding-bottom: 25px;">
-                        <button onclick="gopayment()" style="height: 100px; width: 200px; ">
-                            Payment
-                        </button>
-                    </div>
-                </th>
-
-                <td> -->
-
-
-
-
-
-            <!-- </td>
-
-            </tr>
-
-
-
-
-
-        </tbody>
-    </table> -->
 
 
 

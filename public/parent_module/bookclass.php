@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) { // listen to submit button
 VALUES (' $username ', ' $date ', ' $time ', '$childname','$email','$instructoremail' ,'$status')"; // insert value into booking table
         $result = mysqli_query($conn, $sql); //  performs a query on a database.
         if ($result) { // check if right
-            echo "<script>alert('Wow! success.')</script>";
+            echo "<script>alert('Successfully Booked')</script>";
             echo "<script>window.location = home.php</script>";
         } else {
             echo "<script>alert('Woops! Something Wrong Went.')</script>";

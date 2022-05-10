@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) { // listen to submit button
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['username'];
 
-        echo "<script>alert('Wow! User Registration Completed.')</script>";
+        echo "<script>alert('Successfully Updated.')</script>";
         echo "<meta http-equiv='refresh' content='1'>";
 
 
